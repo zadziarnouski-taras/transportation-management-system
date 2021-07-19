@@ -5,7 +5,6 @@ import by.zadziarnouski.tms.domain.service.DriverService;
 import by.zadziarnouski.tms.persistent.entity.Bus;
 import by.zadziarnouski.tms.persistent.entity.Driver;
 import by.zadziarnouski.tms.persistent.entity.Station;
-import org.modelmapper.AbstractConverter;
 import org.modelmapper.Converter;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.convention.MatchingStrategies;
@@ -54,29 +53,13 @@ public class ModelMapperProviderImpl implements ModelMapperProvider {
         modelMapper.typeMap(Station.class, by.zadziarnouski.tms.domain.model.Station.class);
         modelMapper.typeMap(by.zadziarnouski.tms.domain.model.Station.class, Station.class);
 
-modelMapper.typeMap(by.zadziarnouski.tms.domain.model.Bus.class, by.zadziarnouski.tms.rest.viewModel.Bus.class).addMappings(mapper -> mapper.using(driverStringConverter()).map(by.zadziarnouski.tms.domain.model.Bus::getDriver, by.zadziarnouski.tms.rest.viewModel.Bus::setDriver));
-        //        modelMapper.typeMap(by.zadziarnouski.tms.rest.viewModel.Bus.class, by.zadziarnouski.tms.domain.model.Bus.class).addMappings(mapper -> mapper.using(stringDriverConverter()).map(by.zadziarnouski.tms.rest.viewModel.Bus::getDriver, by.zadziarnouski.tms.domain.model.Bus::setDriver));
+//        modelMapper.typeMap(by.zadziarnouski.tms.domain.model.Bus.class, by.zadziarnouski.tms.rest.model.Bus.class).addMappings(mapper -> mapper.using(driverStringConverter()).map(by.zadziarnouski.tms.domain.model.Bus::getDriver, by.zadziarnouski.tms.rest.model.Bus::setDriver));
+//        modelMapper.typeMap(by.zadziarnouski.tms.rest.viewModel.Bus.class, by.zadziarnouski.tms.domain.model.Bus.class).addMappings(mapper -> mapper.using(stringDriverConverter()).map(by.zadziarnouski.tms.rest.viewModel.Bus::getDriver, by.zadziarnouski.tms.domain.model.Bus::setDriver));
 
         return modelMapper;
     }
 
-//    Converter<String, by.zadziarnouski.tms.domain.model.Driver> StringToDriver = new AbstractConverter<String, by.zadziarnouski.tms.domain.model.Driver>() {
-//        @Override
-//        protected by.zadziarnouski.tms.domain.model.Driver convert(String s) {
-//            String[] name = s.split(" ");
-//            by.zadziarnouski.tms.domain.model.Driver driver = driverService.getDriverByFirstAndLastName(name[1], name[0]);
-//            return driver;
-//        }
-//    };
-
-//    private Converter<String, by.zadziarnouski.tms.domain.model.Driver> stringDriverConverter() {
-//        return context -> {
-//            String[] driverName = context.getSource().split(" ");
-//            return driverService.getDriverByFirstAndLastName(driverName[0], driverName[1]);
-//        };
+//    private Converter<by.zadziarnouski.tms.domain.model.Driver,String> driverStringConverter() {
+//        return context -> context.getSource().getFirstName() + " " + context.getSource().getLastName();
 //    }
-
-    private Converter<by.zadziarnouski.tms.domain.model.Driver,String> driverStringConverter() {
-        return context -> context.getSource().getFirstName() + " " + context.getSource().getLastName();
-    }
 }

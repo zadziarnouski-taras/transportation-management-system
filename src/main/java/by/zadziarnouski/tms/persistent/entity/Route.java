@@ -23,7 +23,7 @@ public class Route {
     private String destination;
     private LocalDateTime timeOfDeparture;
     private LocalDateTime timeOfArrival;
-    @OneToOne
+    @OneToOne()
     private Bus bus;
 
     @ManyToOne()

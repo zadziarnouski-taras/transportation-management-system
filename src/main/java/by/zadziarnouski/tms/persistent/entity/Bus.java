@@ -17,6 +17,6 @@ public class Bus {
     private String registrationPlate;
     private int numberOfPassengerSeats;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     private Driver driver;
 }

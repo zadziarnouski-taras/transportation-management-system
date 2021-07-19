@@ -1,4 +1,4 @@
-package by.zadziarnouski.tms.rest.viewModel;
+package by.zadziarnouski.tms.rest.model;
 
 import lombok.*;
 
@@ -6,7 +6,8 @@ import lombok.*;
 @Setter
 @ToString
 public class Bus {
+    private long id;
     private String registrationPlate;
     private int numberOfPassengerSeats;
-    private String driver;
+    private Driver driver;
 }

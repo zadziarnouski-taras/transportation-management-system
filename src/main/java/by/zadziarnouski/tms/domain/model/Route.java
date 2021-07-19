@@ -7,6 +7,7 @@ import java.time.LocalDateTime;
 @Getter
 @Setter
 public class Route {
+    private Long id;
     private String source;
     private String destination;
     private LocalDateTime timeOfDeparture;

@@ -8,6 +8,7 @@ import java.time.LocalDateTime;
 @Getter
 @Setter
 public class Driver {
+    private Long id;
     private String firstName;
     private String lastName;
     private LocalDate birthday;
