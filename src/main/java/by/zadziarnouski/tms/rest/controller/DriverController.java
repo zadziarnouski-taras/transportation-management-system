@@ -2,11 +2,12 @@ package by.zadziarnouski.tms.rest.controller;
 
 import by.zadziarnouski.tms.domain.service.DriverService;
 import by.zadziarnouski.tms.mapper.DriverMapper;
-import by.zadziarnouski.tms.rest.model.Bus;
 import by.zadziarnouski.tms.rest.model.Driver;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import javax.validation.Valid;
 import java.util.List;
 
 import static java.util.stream.Collectors.toList;
@@ -30,12 +31,13 @@ public class DriverController {
     }
 
     @PostMapping()
-    public void create(@RequestBody Driver driver) {
+    @ResponseStatus(HttpStatus.CREATED)
+    public void create(@Valid @RequestBody Driver driver) {
         driverService.saveOrUpdate(driverMapper.viewToDomain(driver));
     }
 
     @PutMapping()
-    public Driver update(@RequestBody Driver driver) {
+    public Driver update(@Valid @RequestBody Driver driver) {
         by.zadziarnouski.tms.domain.model.Driver updatedDriver = driverService.saveOrUpdate(driverMapper.viewToDomain(driver));
         return driverMapper.domainToView(updatedDriver);
     }

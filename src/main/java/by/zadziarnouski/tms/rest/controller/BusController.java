@@ -3,9 +3,11 @@ package by.zadziarnouski.tms.rest.controller;
 import by.zadziarnouski.tms.domain.service.BusService;
 import by.zadziarnouski.tms.mapper.BusMapper;
 import by.zadziarnouski.tms.rest.model.Bus;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import javax.validation.Valid;
 
 import java.util.List;
 
@@ -30,12 +32,13 @@ public class BusController {
     }
 
     @PostMapping()
-    public void create(@RequestBody Bus bus) {
+    @ResponseStatus(HttpStatus.CREATED)
+    public void create(@Valid @RequestBody Bus bus) {
         busService.saveOrUpdate(busMapper.viewToDomain(bus));
     }
 
     @PutMapping()
-    public Bus update(@RequestBody Bus bus) {
+    public Bus update(@Valid @RequestBody Bus bus) {
         by.zadziarnouski.tms.domain.model.Bus updatedBus = busService.saveOrUpdate(busMapper.viewToDomain(bus));
         return busMapper.domainToView(updatedBus);
     }
@@ -44,5 +47,6 @@ public class BusController {
     public void delete(@PathVariable("id") Long id) {
         busService.delete(id);
     }
+
 
 }

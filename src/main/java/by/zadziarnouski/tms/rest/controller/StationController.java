@@ -2,8 +2,8 @@ package by.zadziarnouski.tms.rest.controller;
 
 import by.zadziarnouski.tms.domain.service.StationService;
 import by.zadziarnouski.tms.mapper.StationMapper;
-import by.zadziarnouski.tms.rest.model.Bus;
 import by.zadziarnouski.tms.rest.model.Station;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
@@ -30,6 +30,7 @@ public class StationController {
     }
 
     @PostMapping()
+    @ResponseStatus(HttpStatus.CREATED)
     public void create(@RequestBody Station station) {
         stationService.saveOrUpdate(stationMapper.viewToDomain(station));
     }

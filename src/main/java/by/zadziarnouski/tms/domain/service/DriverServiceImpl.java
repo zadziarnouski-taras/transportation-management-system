@@ -26,24 +26,6 @@ public class DriverServiceImpl implements DriverService {
         return driverMapper.entityToDomain(driverRepository.save(driverMapper.domainToEntity(driver)));
     }
 
-//    @Override
-//    public Driver update(Driver driver) {
-//        by.zadziarnouski.tms.persistent.entity.Driver updatedDriver = null;
-//        if (driverRepository.existsById(driver.getId())){
-//            updatedDriver = updateFields(driver);
-//        }
-//        return driverMapper.entityToDomain(driverRepository.save(driverMapper.domainToEntity(updatedDriver)));
-//    }
-//
-//    private by.zadziarnouski.tms.persistent.entity.Driver updateFields(Driver driver) {
-//        by.zadziarnouski.tms.persistent.entity.Driver outdatedDriver = driverRepository.findById(driver.getId()).get();
-//        outdatedDriver.setFirstName(driver.getFirstName());
-//        outdatedDriver.setLastName(driver.getLastName());
-//        outdatedDriver.setBirthday(driver.getBirthday());
-//        outdatedDriver.setExpiryDateOfDrivingLicense(driver.getExpiryDateOfDrivingLicense());
-//        return outdatedDriver;
-//    }
-
     @Override
     public Driver findById(Long id) {
         return driverMapper.entityToDomain(driverRepository.findById(id).get());
