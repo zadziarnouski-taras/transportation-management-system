@@ -1,15 +1,12 @@
 package by.zadziarnouski.tms.persistent.entity;
 
-import lombok.*;
+import lombok.Data;
 
 import javax.persistence.*;
 
-@Getter
-@Setter
-@RequiredArgsConstructor
-@EqualsAndHashCode
 @Entity
 @Table(name = "buses")
+@Data
 public class Bus {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

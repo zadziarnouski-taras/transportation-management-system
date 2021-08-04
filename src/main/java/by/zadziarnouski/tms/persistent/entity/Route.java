@@ -1,20 +1,13 @@
 package by.zadziarnouski.tms.persistent.entity;
 
-
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.RequiredArgsConstructor;
-import lombok.Setter;
+import lombok.Data;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
 
-@Getter
-@Setter
-@RequiredArgsConstructor
-@EqualsAndHashCode
 @Entity
 @Table(name = "routes")
+@Data
 public class Route {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

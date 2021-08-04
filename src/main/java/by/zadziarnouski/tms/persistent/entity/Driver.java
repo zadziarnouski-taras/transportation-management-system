@@ -1,17 +1,15 @@
 package by.zadziarnouski.tms.persistent.entity;
 
-import lombok.*;
+
+import lombok.Data;
 
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
-@Getter
-@Setter
-@RequiredArgsConstructor
-@EqualsAndHashCode
 @Entity
 @Table(name = "drivers")
+@Data
 public class Driver {
 
     @Id

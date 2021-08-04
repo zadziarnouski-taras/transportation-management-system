@@ -3,7 +3,7 @@ package by.zadziarnouski.tms.domain.service;
 import by.zadziarnouski.tms.domain.model.Bus;
 import by.zadziarnouski.tms.mapper.BusMapper;
 import by.zadziarnouski.tms.persistent.repository.BusRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -11,15 +11,10 @@ import java.util.List;
 import static java.util.stream.Collectors.toList;
 
 @Service
+@RequiredArgsConstructor
 public class BusServiceImpl implements BusService {
     private final BusRepository busRepository;
     private final BusMapper busMapper;
-
-    @Autowired
-    public BusServiceImpl(BusRepository busRepository, BusMapper busMapper) {
-        this.busRepository = busRepository;
-        this.busMapper = busMapper;
-    }
 
     @Override
     public Bus saveOrUpdate(Bus bus) {
