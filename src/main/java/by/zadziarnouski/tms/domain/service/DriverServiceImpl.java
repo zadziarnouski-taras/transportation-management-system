@@ -1,15 +1,20 @@
 package by.zadziarnouski.tms.domain.service;
 
 import by.zadziarnouski.tms.domain.model.Driver;
+import by.zadziarnouski.tms.exception.SystemException;
+import by.zadziarnouski.tms.exception.ValidationCode;
 import by.zadziarnouski.tms.mapper.DriverMapper;
 import by.zadziarnouski.tms.persistent.repository.DriverRepository;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 import static java.util.stream.Collectors.toList;
 
+@Slf4j
 @Service
 public class DriverServiceImpl implements DriverService {
     private final DriverRepository driverRepository;
@@ -26,9 +31,21 @@ public class DriverServiceImpl implements DriverService {
         return driverMapper.entityToDomain(driverRepository.save(driverMapper.domainToEntity(driver)));
     }
 
+//    @Override
+//    public Driver findById(Long id) {
+//        return driverMapper.entityToDomain(driverRepository.findById(id).get());
+//    }
+
     @Override
     public Driver findById(Long id) {
-        return driverMapper.entityToDomain(driverRepository.findById(id).get());
+        Optional<by.zadziarnouski.tms.persistent.entity.Driver> byId = driverRepository.findById(id);
+        if (byId.isPresent()) {
+            return driverMapper.entityToDomain(byId.get());
+        } else {
+            log.warn("Driver with such " + id + " doesn't exist!!!");
+            throw new SystemException(ValidationCode.INCORRECT_DATA_ENTRY);
+            //TODO исправить это место
+        }
     }
 
     @Override

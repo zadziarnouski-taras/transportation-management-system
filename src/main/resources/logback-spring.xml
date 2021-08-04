@@ -2,7 +2,7 @@
 <configuration>
 
     <property name="LOGS" value="./logs" />
-
+<!--PROD PROFILE-->
     <springProfile name="prod">
         <appender name="RollingFile"
                   class="ch.qos.logback.core.rolling.RollingFileAppender">
@@ -34,6 +34,7 @@
             <appender-ref ref="RollingFile" />
         </logger>
     </springProfile>
+<!--    DEV PROFILE-->
     <springProfile name="dev">
         <appender name="Console"
                   class="ch.qos.logback.core.ConsoleAppender">

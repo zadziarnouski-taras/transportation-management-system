@@ -12,7 +12,7 @@ public class Bus {
     private long id;
     @NotBlank(message = "Registration plate is mandatory")
     private String registrationPlate;
-    @Positive(message = "Number of passenger sets cannot be a negative number")
+    @Positive(message = "Number of passenger sets cannot be a negative number or 0")
     private int numberOfPassengerSeats;
     @NotNull
     private Driver driver;

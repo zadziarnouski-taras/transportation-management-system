@@ -1,6 +1,5 @@
 package by.zadziarnouski.tms.security;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.DisabledException;
@@ -8,16 +7,18 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 
+import javax.annotation.Resource;
+
 @RestController
 @CrossOrigin
 public class JwtAuthenticationController {
-    @Autowired
+    @Resource
     private AuthenticationManager authenticationManager;
 
-    @Autowired
+    @Resource
     private JwtTokenUtil jwtTokenUtil;
 
-    @Autowired
+    @Resource
     private JwtUserDetailsService userDetailsService;
 
     @PostMapping( "/authenticate")

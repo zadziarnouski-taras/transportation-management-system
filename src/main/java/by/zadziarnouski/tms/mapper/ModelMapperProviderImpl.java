@@ -19,12 +19,6 @@ import static org.modelmapper.config.Configuration.AccessLevel.PRIVATE;
 @Component
 public class ModelMapperProviderImpl implements ModelMapperProvider {
     private ModelMapper modelMapper;
-    private final DriverService driverService;
-
-    @Autowired
-    public ModelMapperProviderImpl(@Lazy DriverService driverService) {
-        this.driverService = driverService;
-    }
 
     @Override
     public ModelMapper getModelMapper() {
@@ -53,13 +47,6 @@ public class ModelMapperProviderImpl implements ModelMapperProvider {
         modelMapper.typeMap(Station.class, by.zadziarnouski.tms.domain.model.Station.class);
         modelMapper.typeMap(by.zadziarnouski.tms.domain.model.Station.class, Station.class);
 
-//        modelMapper.typeMap(by.zadziarnouski.tms.domain.model.Bus.class, by.zadziarnouski.tms.rest.model.Bus.class).addMappings(mapper -> mapper.using(driverStringConverter()).map(by.zadziarnouski.tms.domain.model.Bus::getDriver, by.zadziarnouski.tms.rest.model.Bus::setDriver));
-//        modelMapper.typeMap(by.zadziarnouski.tms.rest.viewModel.Bus.class, by.zadziarnouski.tms.domain.model.Bus.class).addMappings(mapper -> mapper.using(stringDriverConverter()).map(by.zadziarnouski.tms.rest.viewModel.Bus::getDriver, by.zadziarnouski.tms.domain.model.Bus::setDriver));
-
         return modelMapper;
     }
-
-//    private Converter<by.zadziarnouski.tms.domain.model.Driver,String> driverStringConverter() {
-//        return context -> context.getSource().getFirstName() + " " + context.getSource().getLastName();
-//    }
 }
