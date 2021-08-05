@@ -3,7 +3,7 @@ package by.zadziarnouski.tms.domain.service;
 import by.zadziarnouski.tms.domain.model.Station;
 import by.zadziarnouski.tms.mapper.StationMapper;
 import by.zadziarnouski.tms.persistent.repository.StationRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -11,15 +11,10 @@ import java.util.List;
 import static java.util.stream.Collectors.toList;
 
 @Service
+@RequiredArgsConstructor
 public class StationServiceImpl implements StationService {
     private final StationRepository stationRepository;
     private final StationMapper stationMapper;
-
-    @Autowired
-    public StationServiceImpl(StationRepository stationRepository, StationMapper stationMapper) {
-        this.stationRepository = stationRepository;
-        this.stationMapper = stationMapper;
-    }
 
     @Override
     public Station saveOrUpdate(Station station) {

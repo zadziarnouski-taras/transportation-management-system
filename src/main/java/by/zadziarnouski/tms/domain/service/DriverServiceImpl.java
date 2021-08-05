@@ -5,8 +5,8 @@ import by.zadziarnouski.tms.exception.SystemException;
 import by.zadziarnouski.tms.exception.ValidationCode;
 import by.zadziarnouski.tms.mapper.DriverMapper;
 import by.zadziarnouski.tms.persistent.repository.DriverRepository;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -16,15 +16,10 @@ import static java.util.stream.Collectors.toList;
 
 @Slf4j
 @Service
+@RequiredArgsConstructor
 public class DriverServiceImpl implements DriverService {
     private final DriverRepository driverRepository;
     private final DriverMapper driverMapper;
-
-    @Autowired
-    public DriverServiceImpl(DriverRepository driverRepository, DriverMapper driverMapper) {
-        this.driverRepository = driverRepository;
-        this.driverMapper = driverMapper;
-    }
 
     @Override
     public Driver saveOrUpdate(Driver driver) {

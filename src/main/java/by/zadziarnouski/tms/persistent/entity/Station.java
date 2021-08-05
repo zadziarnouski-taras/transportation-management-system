@@ -1,19 +1,17 @@
 package by.zadziarnouski.tms.persistent.entity;
 
+import lombok.Data;
 import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.RequiredArgsConstructor;
-import lombok.Setter;
+import lombok.ToString;
 
 import javax.persistence.*;
 import java.util.List;
 
-@Getter
-@Setter
-@RequiredArgsConstructor
-@EqualsAndHashCode
 @Entity
 @Table(name = "stations")
+@Data
+@EqualsAndHashCode(exclude = {"routes"})
+@ToString(exclude = {"routes"})
 public class Station {
 
     @Id

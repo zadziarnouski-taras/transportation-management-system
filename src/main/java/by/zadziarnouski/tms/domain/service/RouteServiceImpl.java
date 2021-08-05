@@ -3,7 +3,7 @@ package by.zadziarnouski.tms.domain.service;
 import by.zadziarnouski.tms.domain.model.Route;
 import by.zadziarnouski.tms.mapper.RouteMapper;
 import by.zadziarnouski.tms.persistent.repository.RouteRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -11,15 +11,10 @@ import java.util.List;
 import static java.util.stream.Collectors.toList;
 
 @Service
+@RequiredArgsConstructor
 public class RouteServiceImpl implements RouteService {
     private final RouteRepository routeRepository;
     private final RouteMapper routeMapper;
-
-    @Autowired
-    public RouteServiceImpl(RouteRepository routeRepository, RouteMapper routeMapper) {
-        this.routeRepository = routeRepository;
-        this.routeMapper = routeMapper;
-    }
 
     @Override
     public Route saveOrUpdate(Route route) {
